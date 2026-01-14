@@ -29,4 +29,11 @@ describe("Terminal", () => {
       const isTTY = yield* terminal.isTTY
       expect(typeof isTTY).toEqual("boolean")
     })))
+
+  it("hasColors", () =>
+    runPromise(Effect.gen(function*() {
+      const terminal = yield* Terminal.Terminal
+      const hasColors = yield* terminal.hasColors()
+      expect(typeof hasColors).toEqual("boolean")
+    })))
 })

@@ -31,6 +31,10 @@ export interface Terminal {
    */
   readonly isTTY: Effect<boolean>
   /**
+   * Determine if the terminal has color support.
+   */
+  readonly hasColors: (count?: number, env?: Record<string, string>) => Effect<boolean>
+  /**
    * Reads input events from the default standard input.
    */
   readonly readInput: Effect<ReadonlyMailbox<UserInput>, never, Scope.Scope>

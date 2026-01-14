@@ -43,6 +43,8 @@ export const make = Effect.fnUntraced(function*(
   const columns = Effect.sync(() => stdout.columns ?? 0)
   const rows = Effect.sync(() => stdout.rows ?? 0)
   const isTTY = Effect.sync(() => Boolean(stdout.isTTY))
+  const hasColors = (count?: number, env?: Record<string, string>) =>
+    Effect.sync(() => stdout.hasColors ? stdout.hasColors(count, env) : false)
 
   const readInput = Effect.gen(function*() {
     yield* RcRef.get(rlRef)
@@ -94,6 +96,7 @@ export const make = Effect.fnUntraced(function*(
     columns,
     rows,
     isTTY,
+    hasColors,
     readInput,
     readLine,
     display
